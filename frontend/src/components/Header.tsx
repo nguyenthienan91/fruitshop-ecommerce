@@ -23,7 +23,7 @@ export const Header = ({ cartCount, currentPage, onNavigate, onToggleMobileMenu 
         {/* Main header */}
         <div className='flex items-center justify-between py-4'>
           {/* Logo */}
-          <div className='flex items-center gap-2 cursor-pointer' onClick={() => onNavigate('home')}>
+          <div className='flex items-center gap-2 cursor-pointer' onClick={() => onNavigate('')}>
             <div className='w-10 h-10 bg-green-500 rounded-full flex items-center justify-center'>
               <span className='text-white font-bold'>🍎</span>
             </div>

@@ -1,5 +1,4 @@
 import { Clock, RefreshCw, Shield, Star, Truck } from 'lucide-react'
-import React from 'react'
 import type { HomePageProps } from '~/types/homePage'
 import { Badge } from '~/ui/badge'
 import { Button } from '~/ui/button'

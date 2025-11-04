@@ -1,6 +1,6 @@
 export interface HeaderProps {
   cartCount: number
-  currentPage: string
+  currentPage?: string
   onNavigate: (page: string) => void
   onToggleMobileMenu: () => void
 }

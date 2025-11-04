@@ -32,6 +32,7 @@ const buttonVariants = cva(
   }
 )
 
+// ...existing code...
 function Button({
   className,
   variant,
@@ -47,5 +48,5 @@ function Button({
   return <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }))} {...props} />
 }
 
-
+// eslint-disable-next-line react-refresh/only-export-components
 export { Button, buttonVariants }
