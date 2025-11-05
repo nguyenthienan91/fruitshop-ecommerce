@@ -9,6 +9,7 @@ import { mockProducts } from './mockData/mockProducts'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { ProductsPage } from './components/ProductsPage'
 import { ProductDetailPage } from './components/ProductDetailPage'
+import { AuthPage } from './components/AuthPage'
 
 function App() {
   const navigate = useNavigate()
@@ -88,23 +89,21 @@ function App() {
               />
             }
           />
+          <Route
+            path='products'
+            element={
+              <ProductsPage products={mockProducts} onAddToCart={handleAddToCart} onViewProduct={handleViewProduct} />
+            }
+          />
+          <Route
+            path='product-detail'
+            element={
+              <ProductDetailPage product={selectedProduct} onAddToCart={handleAddToCart} onNavigate={handleNavigate} />
+            }
+          />
+          <Route path='auth' element={<AuthPage />} />
         </Routes>
       </main>
-
-      <Routes>
-        <Route
-          path='products'
-          element={
-            <ProductsPage products={mockProducts} onAddToCart={handleAddToCart} onViewProduct={handleViewProduct} />
-          }
-        />
-        <Route
-          path='product-detail'
-          element={
-            <ProductDetailPage product={selectedProduct} onAddToCart={handleAddToCart} onNavigate={handleNavigate} />
-          }
-        />
-      </Routes>
 
       <Footer />
     </div>

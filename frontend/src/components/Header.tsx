@@ -1,4 +1,3 @@
-import React from 'react'
 import type { HeaderProps } from '../types/header'
 import { Input } from '~/ui/input'
 import { Button } from '~/ui/button'
