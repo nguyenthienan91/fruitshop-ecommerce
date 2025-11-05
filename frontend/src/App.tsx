@@ -10,6 +10,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import { ProductsPage } from './components/ProductsPage'
 import { ProductDetailPage } from './components/ProductDetailPage'
 import { AuthPage } from './components/AuthPage'
+import { CartPage } from './components/CardPage'
 
 function App() {
   const navigate = useNavigate()
@@ -44,6 +45,14 @@ function App() {
   const handleViewProduct = (product: Product) => {
     setSelectedProduct(product)
     navigate('/product-detail')
+  }
+
+  const handleUpdateQuantity = (productId: string, quantity: number) => {
+    setCartItems((prevItems) => prevItems.map((item) => (item.id === productId ? { ...item, quantity } : item)))
+  }
+
+  const handleRemoveFromCart = (productId: string) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId))
   }
 
   return (
@@ -102,6 +111,17 @@ function App() {
             }
           />
           <Route path='auth' element={<AuthPage />} />
+          <Route
+            path='cart'
+            element={
+              <CartPage
+                cartItems={cartItems}
+                onUpdateQuantity={handleUpdateQuantity}
+                onRemoveItem={handleRemoveFromCart}
+                onNavigate={handleNavigate}
+              />
+            }
+          />
         </Routes>
       </main>
 
