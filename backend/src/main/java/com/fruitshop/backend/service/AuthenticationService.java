@@ -2,6 +2,7 @@ package com.fruitshop.backend.service;
 
 import com.fruitshop.backend.entity.Account;
 import com.fruitshop.backend.model.request.LoginRequest;
+import com.fruitshop.backend.model.request.UpdatePasswordRequest;
 import com.fruitshop.backend.model.response.AccountReponse;
 import com.fruitshop.backend.repository.AuthenticationRepository;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -59,4 +61,16 @@ public class AuthenticationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
         return authenticationRepository.findAccountByPhone(phone);
     }
+
+    public Account getCurrentAccount(){
+        return (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    public AccountReponse updatePassword(UpdatePasswordRequest updatePasswordRequest){
+        Account account = getCurrentAccount();
+        account.setPassword(passwordEncoder.encode(updatePasswordRequest.getPassword()));
+        return modelMapper.map(authenticationRepository.save(account), AccountReponse.class);
+    }
+
+    //reset password
 }
